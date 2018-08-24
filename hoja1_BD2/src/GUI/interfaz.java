@@ -190,15 +190,16 @@ public class interfaz extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Apellidos:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 170, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 180, 40));
 
         rSMaterialButtonRectangle7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(rSMaterialButtonRectangle7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 280, 50));
 
+        rSComboMetro1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lectura Comprometida", "Lectura no Comprometida", "Lectura Repetible", "Lectura Serializable" }));
         rSComboMetro1.setColorArrow(new java.awt.Color(69, 40, 120));
         rSComboMetro1.setColorBorde(new java.awt.Color(255, 255, 255));
         rSComboMetro1.setColorFondo(new java.awt.Color(69, 40, 120));
-        rSComboMetro1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 12)); // NOI18N
+        rSComboMetro1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 12)); // NOI18N
         jPanel1.add(rSComboMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 57, 260, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 630));
