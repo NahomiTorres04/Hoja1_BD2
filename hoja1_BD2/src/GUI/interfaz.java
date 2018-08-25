@@ -5,33 +5,40 @@
  */
 package GUI;
 
+import clases.Aislamiento;
 import clases.datos;
 import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JOptionPane;
+import rojerusan.RSNotifyAnimated;
 
 /**
  *
  * @author Nahomi
  */
 public class interfaz extends javax.swing.JFrame {
-int x=0, y=0;
+
+    int x = 0, y = 0;
+    private final Aislamiento aislamiento;
+
     /**
      * Creates new form interfaz
      */
     public interfaz() {
         initComponents();
-        Shape forma = new RoundRectangle2D.Double(0,0,this.getBounds().width, this.getBounds().height,35,35);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 35, 35);
         AWTUtilities.setWindowShape(this, forma);
         this.setLocationRelativeTo(null);
-        txtcarne.setBackground(new Color(0,0,0,0));
-        txtedad.setBackground(new Color(0,0,0,0));
-        txtnombre1.setBackground(new Color(0,0,0,0));
-        txtapellido.setBackground(new Color(0,0,0,0));
+        txtcarne.setBackground(new Color(0, 0, 0, 0));
+        txtedad.setBackground(new Color(0, 0, 0, 0));
+        txtnombre1.setBackground(new Color(0, 0, 0, 0));
+        txtapellido.setBackground(new Color(0, 0, 0, 0));
         activar_desactivar(false);
         guardar1.setEnabled(false);
+        aislamiento = new Aislamiento();
+        lblnivel.setText(aislamiento.getAislamiento());
     }
 
     /**
@@ -70,6 +77,7 @@ int x=0, y=0;
         Insertar = new rojerusan.RSMaterialButtonRectangle();
         Cancelar = new rojerusan.RSMaterialButtonRectangle();
         nuevo1 = new rojerusan.RSMaterialButtonRectangle();
+        lblnivel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -238,6 +246,11 @@ int x=0, y=0;
         rSComboMetro1.setColorBorde(new java.awt.Color(69, 40, 120));
         rSComboMetro1.setColorFondo(new java.awt.Color(69, 40, 120));
         rSComboMetro1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 21)); // NOI18N
+        rSComboMetro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSComboMetro1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(rSComboMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 57, 290, 30));
 
         guardar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -288,13 +301,17 @@ int x=0, y=0;
         });
         jPanel1.add(nuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 220, 50));
 
+        lblnivel.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 21)); // NOI18N
+        lblnivel.setForeground(new java.awt.Color(255, 255, 255));
+        lblnivel.setText("jLabel8");
+        jPanel1.add(lblnivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 220, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void activar_desactivar(boolean valor)
-    {
+    private void activar_desactivar(boolean valor) {
         txtcarne.setEnabled(valor);
         txtapellido.setEnabled(valor);
         txtnombre1.setEnabled(valor);
@@ -302,47 +319,41 @@ int x=0, y=0;
         Insertar.setEnabled(valor);
         Cancelar.setEnabled(valor);
     }
-    
-    private void cancelar()
-    {
+
+    private void cancelar() {
         int n = JOptionPane.showConfirmDialog(null, "¿Realmente desea cancelar?", "CANCELAR", JOptionPane.YES_NO_OPTION);
-        if(n == JOptionPane.YES_OPTION)
+        if (n == JOptionPane.YES_OPTION) {
             limpiarCampos();
+        }
     }
-    
-    private void limpiarCampos()
-    {
+
+    private void limpiarCampos() {
         txtcarne.setText("");
         txtapellido.setText("");
         txtnombre1.setText("");
         txtedad.setText("");
     }
-    
-    private boolean verificarCampos()
-    {
-        if(txtnombre1.getText().length() == 0)
-        {
+
+    private boolean verificarCampos() {
+        if (txtnombre1.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Campo Nombres aún vacío");
             txtnombre1.requestFocus();
             return false;
-        } else if(txtapellido.getText().length() == 0)
-        {
+        } else if (txtapellido.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Campo Apellidos aún vacío");
             txtapellido.requestFocus();
             return false;
-        } else if(txtedad.getText().length() == 0)
-        {
+        } else if (txtedad.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Campo edad aún vacío");
             txtedad.requestFocus();
             return false;
-        } else if(txtcarne.getText().length() == 0)
-        {
+        } else if (txtcarne.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Campo carné aún vacío");
             txtcarne.requestFocus();
             return false;
-        }
-        else
+        } else {
             return true;
+        }
     }
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         this.setExtendedState(ICONIFIED);
@@ -350,8 +361,9 @@ int x=0, y=0;
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         int n = JOptionPane.showConfirmDialog(null, "¿Realmente desea salir?", "CERRANDO", JOptionPane.YES_NO_OPTION);
-        if(n == JOptionPane.YES_OPTION)
+        if (n == JOptionPane.YES_OPTION) {
             System.exit(0);
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void nuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMouseClicked
@@ -360,30 +372,30 @@ int x=0, y=0;
     }//GEN-LAST:event_nuevoMouseClicked
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
-         x = evt.getX();
-        y =evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_jPanel2MousePressed
 
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
-        this.setLocation(this.getLocation().x + evt.getX() - x,this.getLocation().y + evt.getY() -  y);
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
     }//GEN-LAST:event_jPanel2MouseDragged
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         x = evt.getX();
-        y =evt.getY();
+        y = evt.getY();
     }//GEN-LAST:event_jPanel1MousePressed
 
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
-        this.setLocation(this.getLocation().x + evt.getX() - x,this.getLocation().y + evt.getY() -  y);
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
     }//GEN-LAST:event_jPanel1MouseDragged
 
     private void InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarActionPerformed
-        if(verificarCampos())
-        {
+        if (verificarCampos()) {
             datos data = new datos();
-            if(data.insertar_estudiante(txtnombre1.getText(), txtapellido.getText(), 
-                    Integer.parseInt(txtedad.getText()), txtcarne.getText()))
+            if (data.insertar_estudiante(txtnombre1.getText(), txtapellido.getText(),
+                    Integer.parseInt(txtedad.getText()), txtcarne.getText())) {
                 guardar1.setEnabled(true);
+            }
         }
     }//GEN-LAST:event_InsertarActionPerformed
 
@@ -398,12 +410,37 @@ int x=0, y=0;
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_guardar1ActionPerformed
+
+    private void rSComboMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSComboMetro1ActionPerformed
+        switch (rSComboMetro1.getSelectedIndex()) {
+            case 0:
+                aislamiento.SetAislamiento("READ COMMITTED");
+                break;
+            case 1:
+                aislamiento.SetAislamiento("READ UNCOMMITTED");
+                break;
+            case 2:
+                aislamiento.SetAislamiento("REPEATABLE READ");
+                break;
+            case 3:
+                aislamiento.SetAislamiento("SERIALIZABLE");
+                break;
+            default:
+                break;
+        }
+        new rojerusan.RSNotifyAnimated("¡ÉXITO!", "El nivel de ailamiento cambiado exitosamente a: " + rSComboMetro1.getSelectedItem(),
+                10, RSNotifyAnimated.PositionNotify.BottomRight, RSNotifyAnimated.AnimationNotify.BottomUp,
+                RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+        new rojerusan.RSNotifyAnimated("¡INFORMACIÓN!", "Para que se ejecuten los cambios debe de reiniciar la conexion",
+                10, RSNotifyAnimated.PositionNotify.BottomLeft, RSNotifyAnimated.AnimationNotify.BottomUp,
+                RSNotifyAnimated.TypeNotify.INFORMATION).setVisible(true);
+    }//GEN-LAST:event_rSComboMetro1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -455,6 +492,7 @@ int x=0, y=0;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblnivel;
     private rojerusan.RSMaterialButtonRectangle nuevo;
     private rojerusan.RSMaterialButtonRectangle nuevo1;
     private rojerusan.RSComboMetro rSComboMetro1;

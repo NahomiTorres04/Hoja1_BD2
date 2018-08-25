@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -22,16 +21,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Héctor
  */
 public class datos {
+
     private Connection con = null;
-    private conexion conexion;
-    
-    public datos()
-    {
+    private final conexion conexion;
+
+    public datos() {
         conexion = new conexion();
         con = conexion.getConection();
     }
-    
-    public boolean insertar_estudiante(String nombres, String apellidos, int edad, String carne){
+
+    public boolean insertar_estudiante(String nombres, String apellidos, int edad, String carne) {
         boolean guardado = false;
         try {
             String query = "INSERT INTO estudiante(nombre, apellido, edad, carne) VALUES (?,?,?,?);";
@@ -40,15 +39,12 @@ public class datos {
             pst.setString(2, apellidos);
             pst.setInt(3, edad);
             pst.setString(4, carne);
-            
+
             int res = pst.executeUpdate();
-            if(res > 0)
-            {
+            if (res > 0) {
                 JOptionPane.showMessageDialog(null, "Estudiante guardado");
                 guardado = true;
-            }
-            else
-            {
+            } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar estudiante");
                 guardado = false;
             }
@@ -58,7 +54,7 @@ public class datos {
         }
         return guardado;
     }
-    
+
     public DefaultTableModel getInventario(JTable tabla) {
 
         try {
