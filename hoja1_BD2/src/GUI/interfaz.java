@@ -15,7 +15,7 @@ import java.awt.geom.RoundRectangle2D;
  * @author Nahomi
  */
 public class interfaz extends javax.swing.JFrame {
-
+int x=0, y=0;
     /**
      * Creates new form interfaz
      */
@@ -48,12 +48,12 @@ public class interfaz extends javax.swing.JFrame {
         txtcarne = new javax.swing.JTextField();
         txtnombre1 = new javax.swing.JTextField();
         txtapellido = new javax.swing.JTextField();
+        nuevo = new rojerusan.RSMaterialButtonRectangle();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtedad = new javax.swing.JTextField();
         rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle1 = new rojerusan.RSMaterialButtonRectangle();
-        guardar = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle4 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle5 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle6 = new rojerusan.RSMaterialButtonRectangle();
@@ -62,15 +62,39 @@ public class interfaz extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         rSMaterialButtonRectangle7 = new rojerusan.RSMaterialButtonRectangle();
         rSComboMetro1 = new rojerusan.RSComboMetro();
+        guardar1 = new rojerusan.RSMaterialButtonRectangle();
+        Insertar = new rojerusan.RSMaterialButtonRectangle();
+        Cancelar = new rojerusan.RSMaterialButtonRectangle();
+        nuevo1 = new rojerusan.RSMaterialButtonRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(69, 40, 120));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Person_45px.png"))); // NOI18N
 
@@ -117,42 +141,54 @@ public class interfaz extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-administrator-male-400.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 330, 370));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 340, 370));
 
         txtcarne.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
         txtcarne.setForeground(new java.awt.Color(69, 40, 120));
         txtcarne.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtcarne.setBorder(null);
         txtcarne.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel1.add(txtcarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 392, 240, 40));
+        jPanel1.add(txtcarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 364, 240, 40));
 
         txtnombre1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
         txtnombre1.setForeground(new java.awt.Color(69, 40, 120));
         txtnombre1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtnombre1.setBorder(null);
-        jPanel1.add(txtnombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 182, 250, 40));
+        jPanel1.add(txtnombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 154, 250, 40));
 
         txtapellido.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
         txtapellido.setForeground(new java.awt.Color(69, 40, 120));
         txtapellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtapellido.setBorder(null);
-        jPanel1.add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 251, 250, 40));
+        jPanel1.add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 222, 250, 40));
+
+        nuevo.setBackground(new java.awt.Color(255, 255, 255));
+        nuevo.setForeground(new java.awt.Color(69, 40, 120));
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
+        nuevo.setText("Estudiantes");
+        nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        nuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nuevoMouseClicked(evt);
+            }
+        });
+        jPanel1.add(nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(708, 490, 200, 50));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(69, 40, 120));
         jLabel6.setText("Años");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 322, 90, 40));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 292, 90, 40));
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Edad:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 170, 40));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 170, 40));
 
         txtedad.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
         txtedad.setForeground(new java.awt.Color(69, 40, 120));
         txtedad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtedad.setBorder(null);
-        jPanel1.add(txtedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 322, 60, 40));
+        jPanel1.add(txtedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 292, 60, 40));
 
         rSMaterialButtonRectangle2.setBackground(new java.awt.Color(69, 40, 120));
         jPanel1.add(rSMaterialButtonRectangle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 390, 440));
@@ -161,46 +197,67 @@ public class interfaz extends javax.swing.JFrame {
         rSMaterialButtonRectangle1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(rSMaterialButtonRectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 430, 480));
 
-        guardar.setBackground(new java.awt.Color(255, 255, 255));
-        guardar.setForeground(new java.awt.Color(69, 40, 120));
-        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
-        guardar.setText("Guardar");
-        guardar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, 280, 50));
-
         rSMaterialButtonRectangle4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(rSMaterialButtonRectangle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 280, 50));
+        jPanel1.add(rSMaterialButtonRectangle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 280, 50));
 
         rSMaterialButtonRectangle5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(rSMaterialButtonRectangle5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 280, 50));
+        jPanel1.add(rSMaterialButtonRectangle5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 280, 50));
 
         rSMaterialButtonRectangle6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(rSMaterialButtonRectangle6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 180, 50));
+        jPanel1.add(rSMaterialButtonRectangle6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 180, 50));
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Carné:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 170, 40));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 170, 40));
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombres:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 180, 40));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 180, 40));
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Apellidos:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 180, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 180, 40));
 
         rSMaterialButtonRectangle7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(rSMaterialButtonRectangle7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 280, 50));
+        jPanel1.add(rSMaterialButtonRectangle7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 280, 50));
 
         rSComboMetro1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lectura Comprometida", "Lectura no Comprometida", "Lectura Repetible", "Lectura Serializable" }));
         rSComboMetro1.setColorArrow(new java.awt.Color(69, 40, 120));
-        rSComboMetro1.setColorBorde(new java.awt.Color(255, 255, 255));
+        rSComboMetro1.setColorBorde(new java.awt.Color(69, 40, 120));
         rSComboMetro1.setColorFondo(new java.awt.Color(69, 40, 120));
-        rSComboMetro1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 12)); // NOI18N
-        jPanel1.add(rSComboMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 57, 260, 30));
+        rSComboMetro1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 21)); // NOI18N
+        jPanel1.add(rSComboMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 57, 290, 30));
+
+        guardar1.setBackground(new java.awt.Color(255, 255, 255));
+        guardar1.setForeground(new java.awt.Color(69, 40, 120));
+        guardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
+        guardar1.setText("Guardar");
+        guardar1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 220, 50));
+
+        Insertar.setBackground(new java.awt.Color(255, 255, 255));
+        Insertar.setForeground(new java.awt.Color(69, 40, 120));
+        Insertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
+        Insertar.setText("Insertar");
+        Insertar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(Insertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 220, 50));
+
+        Cancelar.setBackground(new java.awt.Color(255, 255, 255));
+        Cancelar.setForeground(new java.awt.Color(69, 40, 120));
+        Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
+        Cancelar.setText("Cancelar");
+        Cancelar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 220, 50));
+
+        nuevo1.setBackground(new java.awt.Color(255, 255, 255));
+        nuevo1.setForeground(new java.awt.Color(69, 40, 120));
+        nuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
+        nuevo1.setText("Nuevo");
+        nuevo1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(nuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 220, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 630));
 
@@ -214,6 +271,29 @@ public class interfaz extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void nuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMouseClicked
+        Tabla t = new Tabla();
+        t.setVisible(true);
+    }//GEN-LAST:event_nuevoMouseClicked
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+         x = evt.getX();
+        y =evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x,this.getLocation().y + evt.getY() -  y);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        x = evt.getX();
+        y =evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x,this.getLocation().y + evt.getY() -  y);
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     /**
      * @param args the command line arguments
@@ -251,7 +331,9 @@ public class interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSMaterialButtonRectangle guardar;
+    private rojerusan.RSMaterialButtonRectangle Cancelar;
+    private rojerusan.RSMaterialButtonRectangle Insertar;
+    private rojerusan.RSMaterialButtonRectangle guardar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -263,6 +345,8 @@ public class interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private rojerusan.RSMaterialButtonRectangle nuevo;
+    private rojerusan.RSMaterialButtonRectangle nuevo1;
     private rojerusan.RSComboMetro rSComboMetro1;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
