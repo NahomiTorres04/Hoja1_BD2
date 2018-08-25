@@ -1,42 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author alex
  */
 public class conexion {
-    private String nombreBD="NOMBRE DE LA BASE";
+    private String nombreBD="multitor_Hoja1BD2";
     private String usuario="root";
-    private String password="";
-    private String url="jdbc:mysql://localhost:3306/"+nombreBD+"?autoReconnect=true&useSSL=false";
-    private Connection con = null;
-    public  conexion()
+    //private String password="";
+    //private String url="jdbc:mysql://localhost:3306/"+nombreBD+"?autoReconnect=true&useSSL=false";
+    private String password="1234";
+    private String url="jdbc:mysql://localhost:3307/"+nombreBD+"?autoReconnect=true&useSSL=false";
+    
+    public com.mysql.jdbc.Connection getConection()
     {
-        try {
+        com.mysql.jdbc.Connection con = null;
+        try{
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url, usuario, password);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la Base de Datos");
-            Logger.getLogger(conexion.class.getName()).log(Level.SEVERE, null, ex);
-            System.exit(0);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(conexion.class.getName()).log(Level.SEVERE, null, ex);
+            con = (com.mysql.jdbc.Connection) DriverManager.getConnection(url, usuario, password);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
         }
-    }
-    public Connection getConnection()
-    {
         return con;
     }
 }
+

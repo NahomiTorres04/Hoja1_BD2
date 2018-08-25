@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import clases.datos;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
@@ -19,7 +20,9 @@ int x=0,y=0;
      * Creates new form Tabla
      */
     public Tabla() {
+        data = new datos();
         initComponents();
+        tableEstudiante.setModel(data.getInventario(tableEstudiante));
         Shape forma = new RoundRectangle2D.Double(0,0,this.getBounds().width, this.getBounds().height,35,35);
         AWTUtilities.setWindowShape(this, forma);
         this.setLocationRelativeTo(null);
@@ -186,6 +189,11 @@ int x=0,y=0;
 
         actualizar.setBackground(new java.awt.Color(69, 40, 120));
         actualizar.setText("Actualizar");
+        actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarActionPerformed(evt);
+            }
+        });
         jPanel1.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 80, 230, 80));
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
@@ -224,6 +232,10 @@ int x=0,y=0;
         this.setLocation(this.getLocation().x + evt.getX() - x,this.getLocation().y + evt.getY() -  y);
     }//GEN-LAST:event_jPanel1MouseDragged
 
+    private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
+        tableEstudiante.setModel(data.getInventario(tableEstudiante));
+    }//GEN-LAST:event_actualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -258,6 +270,8 @@ int x=0,y=0;
             }
         });
     }
+    
+    private final datos data;   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSMaterialButtonRectangle actualizar;

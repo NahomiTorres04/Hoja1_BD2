@@ -5,10 +5,12 @@
  */
 package GUI;
 
+import clases.datos;
 import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,6 +30,8 @@ int x=0, y=0;
         txtedad.setBackground(new Color(0,0,0,0));
         txtnombre1.setBackground(new Color(0,0,0,0));
         txtapellido.setBackground(new Color(0,0,0,0));
+        activar_desactivar(false);
+        guardar1.setEnabled(false);
     }
 
     /**
@@ -105,6 +109,11 @@ int x=0, y=0;
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -236,6 +245,11 @@ int x=0, y=0;
         guardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
         guardar1.setText("Guardar");
         guardar1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        guardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardar1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 220, 50));
 
         Insertar.setBackground(new java.awt.Color(255, 255, 255));
@@ -243,6 +257,11 @@ int x=0, y=0;
         Insertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
         Insertar.setText("Insertar");
         Insertar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Insertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsertarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Insertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 220, 50));
 
         Cancelar.setBackground(new java.awt.Color(255, 255, 255));
@@ -250,6 +269,11 @@ int x=0, y=0;
         Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
         Cancelar.setText("Cancelar");
         Cancelar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 220, 50));
 
         nuevo1.setBackground(new java.awt.Color(255, 255, 255));
@@ -257,6 +281,11 @@ int x=0, y=0;
         nuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
         nuevo1.setText("Nuevo");
         nuevo1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        nuevo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevo1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(nuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 220, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 630));
@@ -264,12 +293,65 @@ int x=0, y=0;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void activar_desactivar(boolean valor)
+    {
+        txtcarne.setEnabled(valor);
+        txtapellido.setEnabled(valor);
+        txtnombre1.setEnabled(valor);
+        txtedad.setEnabled(valor);
+        Insertar.setEnabled(valor);
+        Cancelar.setEnabled(valor);
+    }
+    
+    private void cancelar()
+    {
+        int n = JOptionPane.showConfirmDialog(null, "¿Realmente desea cancelar?", "CANCELAR", JOptionPane.YES_NO_OPTION);
+        if(n == JOptionPane.YES_OPTION)
+            limpiarCampos();
+    }
+    
+    private void limpiarCampos()
+    {
+        txtcarne.setText("");
+        txtapellido.setText("");
+        txtnombre1.setText("");
+        txtedad.setText("");
+    }
+    
+    private boolean verificarCampos()
+    {
+        if(txtnombre1.getText().length() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Campo Nombres aún vacío");
+            txtnombre1.requestFocus();
+            return false;
+        } else if(txtapellido.getText().length() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Campo Apellidos aún vacío");
+            txtapellido.requestFocus();
+            return false;
+        } else if(txtedad.getText().length() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Campo edad aún vacío");
+            txtedad.requestFocus();
+            return false;
+        } else if(txtcarne.getText().length() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Campo carné aún vacío");
+            txtcarne.requestFocus();
+            return false;
+        }
+        else
+            return true;
+    }
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        System.exit(0);
+        int n = JOptionPane.showConfirmDialog(null, "¿Realmente desea salir?", "CERRANDO", JOptionPane.YES_NO_OPTION);
+        if(n == JOptionPane.YES_OPTION)
+            System.exit(0);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void nuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMouseClicked
@@ -294,6 +376,34 @@ int x=0, y=0;
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
         this.setLocation(this.getLocation().x + evt.getX() - x,this.getLocation().y + evt.getY() -  y);
     }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarActionPerformed
+        if(verificarCampos())
+        {
+            datos data = new datos();
+            if(data.insertar_estudiante(txtnombre1.getText(), txtapellido.getText(), 
+                    Integer.parseInt(txtedad.getText()), txtcarne.getText()))
+                guardar1.setEnabled(true);
+        }
+    }//GEN-LAST:event_InsertarActionPerformed
+
+    private void nuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo1ActionPerformed
+        activar_desactivar(true);
+        limpiarCampos();
+        txtnombre1.requestFocus();
+    }//GEN-LAST:event_nuevo1ActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        cancelar();
+    }//GEN-LAST:event_CancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardar1ActionPerformed
 
     /**
      * @param args the command line arguments
