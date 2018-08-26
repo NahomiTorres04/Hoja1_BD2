@@ -20,8 +20,9 @@ import rojerusan.RSNotifyAnimated;
  */
 public class interfaz extends javax.swing.JFrame {
 
-    int x = 0, y = 0;
+    private int x = 0, y = 0;
     private final Aislamiento aislamiento;
+    private final datos data;
 
     /**
      * Creates new form interfaz
@@ -36,9 +37,10 @@ public class interfaz extends javax.swing.JFrame {
         txtnombre1.setBackground(new Color(0, 0, 0, 0));
         txtapellido.setBackground(new Color(0, 0, 0, 0));
         activar_desactivar(false);
-        guardar1.setEnabled(false);
+        guardar.setEnabled(false);
         aislamiento = new Aislamiento();
         lblnivel.setText(aislamiento.getAislamiento());
+        data = new datos();
     }
 
     /**
@@ -59,7 +61,7 @@ public class interfaz extends javax.swing.JFrame {
         txtcarne = new javax.swing.JTextField();
         txtnombre1 = new javax.swing.JTextField();
         txtapellido = new javax.swing.JTextField();
-        nuevo = new rojerusan.RSMaterialButtonRectangle();
+        verEst = new rojerusan.RSMaterialButtonRectangle();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtedad = new javax.swing.JTextField();
@@ -73,10 +75,10 @@ public class interfaz extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         rSMaterialButtonRectangle7 = new rojerusan.RSMaterialButtonRectangle();
         rSComboMetro1 = new rojerusan.RSComboMetro();
-        guardar1 = new rojerusan.RSMaterialButtonRectangle();
+        guardar = new rojerusan.RSMaterialButtonRectangle();
         Insertar = new rojerusan.RSMaterialButtonRectangle();
         Cancelar = new rojerusan.RSMaterialButtonRectangle();
-        nuevo1 = new rojerusan.RSMaterialButtonRectangle();
+        nuevo = new rojerusan.RSMaterialButtonRectangle();
         lblnivel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -179,17 +181,17 @@ public class interfaz extends javax.swing.JFrame {
         txtapellido.setBorder(null);
         jPanel1.add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 222, 250, 40));
 
-        nuevo.setBackground(new java.awt.Color(255, 255, 255));
-        nuevo.setForeground(new java.awt.Color(69, 40, 120));
-        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
-        nuevo.setText("Estudiantes");
-        nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        nuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+        verEst.setBackground(new java.awt.Color(255, 255, 255));
+        verEst.setForeground(new java.awt.Color(69, 40, 120));
+        verEst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
+        verEst.setText("Estudiantes");
+        verEst.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        verEst.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevoMouseClicked(evt);
+                verEstMouseClicked(evt);
             }
         });
-        jPanel1.add(nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(708, 490, 200, 50));
+        jPanel1.add(verEst, new org.netbeans.lib.awtextra.AbsoluteConstraints(708, 490, 200, 50));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(69, 40, 120));
@@ -253,17 +255,17 @@ public class interfaz extends javax.swing.JFrame {
         });
         jPanel1.add(rSComboMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 57, 290, 30));
 
-        guardar1.setBackground(new java.awt.Color(255, 255, 255));
-        guardar1.setForeground(new java.awt.Color(69, 40, 120));
-        guardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
-        guardar1.setText("Guardar");
-        guardar1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        guardar1.addActionListener(new java.awt.event.ActionListener() {
+        guardar.setBackground(new java.awt.Color(255, 255, 255));
+        guardar.setForeground(new java.awt.Color(69, 40, 120));
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
+        guardar.setText("Guardar");
+        guardar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardar1ActionPerformed(evt);
+                guardarActionPerformed(evt);
             }
         });
-        jPanel1.add(guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 220, 50));
+        jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 220, 50));
 
         Insertar.setBackground(new java.awt.Color(255, 255, 255));
         Insertar.setForeground(new java.awt.Color(69, 40, 120));
@@ -289,17 +291,17 @@ public class interfaz extends javax.swing.JFrame {
         });
         jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 220, 50));
 
-        nuevo1.setBackground(new java.awt.Color(255, 255, 255));
-        nuevo1.setForeground(new java.awt.Color(69, 40, 120));
-        nuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
-        nuevo1.setText("Nuevo");
-        nuevo1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        nuevo1.addActionListener(new java.awt.event.ActionListener() {
+        nuevo.setBackground(new java.awt.Color(255, 255, 255));
+        nuevo.setForeground(new java.awt.Color(69, 40, 120));
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/general/icons8_Save_30px.png"))); // NOI18N
+        nuevo.setText("Nuevo");
+        nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo1ActionPerformed(evt);
+                nuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(nuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 220, 50));
+        jPanel1.add(nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 220, 50));
 
         lblnivel.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 21)); // NOI18N
         lblnivel.setForeground(new java.awt.Color(255, 255, 255));
@@ -324,6 +326,11 @@ public class interfaz extends javax.swing.JFrame {
         int n = JOptionPane.showConfirmDialog(null, "¿Realmente desea cancelar?", "CANCELAR", JOptionPane.YES_NO_OPTION);
         if (n == JOptionPane.YES_OPTION) {
             limpiarCampos();
+            data.Commit_Rollback(false);
+            nuevo.setEnabled(true);
+            guardar.setEnabled(false);
+            Insertar.setEnabled(false);
+            Cancelar.setEnabled(false);
         }
     }
 
@@ -366,10 +373,10 @@ public class interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void nuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoMouseClicked
+    private void verEstMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verEstMouseClicked
         Tabla t = new Tabla();
         t.setVisible(true);
-    }//GEN-LAST:event_nuevoMouseClicked
+    }//GEN-LAST:event_verEstMouseClicked
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
         x = evt.getX();
@@ -391,19 +398,21 @@ public class interfaz extends javax.swing.JFrame {
 
     private void InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarActionPerformed
         if (verificarCampos()) {
-            datos data = new datos();
             if (data.insertar_estudiante(txtnombre1.getText(), txtapellido.getText(),
                     Integer.parseInt(txtedad.getText()), txtcarne.getText())) {
-                guardar1.setEnabled(true);
+                guardar.setEnabled(true);
+                limpiarCampos();
             }
         }
     }//GEN-LAST:event_InsertarActionPerformed
 
-    private void nuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo1ActionPerformed
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         activar_desactivar(true);
         limpiarCampos();
         txtnombre1.requestFocus();
-    }//GEN-LAST:event_nuevo1ActionPerformed
+        data.Start_Transaction();
+        nuevo.setEnabled(false);
+    }//GEN-LAST:event_nuevoActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         cancelar();
@@ -413,9 +422,13 @@ public class interfaz extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_guardar1ActionPerformed
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        data.Commit_Rollback(true);
+        nuevo.setEnabled(true);
+        guardar.setEnabled(false);
+        Insertar.setEnabled(false);
+        Cancelar.setEnabled(false);
+    }//GEN-LAST:event_guardarActionPerformed
 
     private void rSComboMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSComboMetro1ActionPerformed
         switch (rSComboMetro1.getSelectedIndex()) {
@@ -480,7 +493,7 @@ public class interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSMaterialButtonRectangle Cancelar;
     private rojerusan.RSMaterialButtonRectangle Insertar;
-    private rojerusan.RSMaterialButtonRectangle guardar1;
+    private rojerusan.RSMaterialButtonRectangle guardar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -494,7 +507,6 @@ public class interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblnivel;
     private rojerusan.RSMaterialButtonRectangle nuevo;
-    private rojerusan.RSMaterialButtonRectangle nuevo1;
     private rojerusan.RSComboMetro rSComboMetro1;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
@@ -506,5 +518,6 @@ public class interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField txtcarne;
     private javax.swing.JTextField txtedad;
     private javax.swing.JTextField txtnombre1;
+    private rojerusan.RSMaterialButtonRectangle verEst;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,7 +30,7 @@ public class Aislamiento {
         try {
             String sql = "SET GLOBAL TRANSACTION ISOLATION LEVEL " + nivel + ";";
             PreparedStatement pst = con.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
+            pst.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(Aislamiento.class.getName()).log(Level.SEVERE, null, ex);
         }

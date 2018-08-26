@@ -30,6 +30,26 @@ public class datos {
         con = conexion.getConection();
     }
 
+    public void Start_Transaction() {
+        try {
+            String query = "Start Transaction;";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(datos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void Commit_Rollback(boolean estado) {
+        try {
+            String query = (estado) ? "COMMIT" : "ROLLBACK";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(datos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public boolean insertar_estudiante(String nombres, String apellidos, int edad, String carne) {
         boolean guardado = false;
         try {
@@ -39,7 +59,6 @@ public class datos {
             pst.setString(2, apellidos);
             pst.setInt(3, edad);
             pst.setString(4, carne);
-
             int res = pst.executeUpdate();
             if (res > 0) {
                 JOptionPane.showMessageDialog(null, "Estudiante guardado");
@@ -48,7 +67,6 @@ public class datos {
                 JOptionPane.showMessageDialog(null, "Error al guardar estudiante");
                 guardado = false;
             }
-            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(datos.class.getName()).log(Level.SEVERE, null, ex);
         }
