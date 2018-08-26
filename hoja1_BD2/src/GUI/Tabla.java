@@ -167,7 +167,7 @@ int x=0,y=0;
         tableEstudiante.setColorBordeHead(new java.awt.Color(255, 255, 255));
         tableEstudiante.setColorFilasBackgound1(new java.awt.Color(69, 40, 120));
         tableEstudiante.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        tableEstudiante.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tableEstudiante.setColorFilasForeground1(new java.awt.Color(255, 255, 255));
         tableEstudiante.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
         tableEstudiante.setColorSelBackgound(new java.awt.Color(22, 54, 77));
         tableEstudiante.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 18)); // NOI18N
